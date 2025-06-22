@@ -12,30 +12,67 @@
       background-color: #f5f5f5;
     }
 
+    /* Chatbase (lado izquierdo) */
+    .chatbase-container {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 350px;
+      height: 500px;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* Dialogflow (lado derecho) */
     df-messenger {
       position: fixed;
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
       --df-messenger-button-titlebar-color: #1a1a1a;
       --df-messenger-chat-background-color: #f3f3f3;
       --df-messenger-font-color: #333;
       --df-messenger-send-icon: #d4af37;
       --df-messenger-user-message: #d4af37;
       --df-messenger-bot-message: #868686;
+      z-index: 1000;
+    }
+
+    /* Responsive para móviles */
+    @media (max-width: 768px) {
+      .chatbase-container, df-messenger {
+        width: calc(100% - 40px);
+        height: 400px;
+      }
+      .chatbase-container {
+        bottom: 440px;
+        left: 20px;
+      }
     }
   </style>
 </head>
 <body>
-    <script src="https://www.chatbase.co/chatbot-iframe/xDMziOstz-ZtyCLzh3aGQ"></script>
+  <!-- Chatbase Chatbot -->
+  <div class="chatbase-container">
+    <iframe 
+      src="https://www.chatbase.co/chatbot-iframe/xDMziOstz-ZtyCLzh3aGQ"
+      width="100%" 
+      height="100%"
+      frameborder="0"
+      style="border-radius: 12px;"
+    ></iframe>
+  </div>
+
+  <!-- Dialogflow Chatbot -->
   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger
-  intent="WELCOME"
-  chat-title="BarberiaBot"
-  agent-id="9813ba07-69c3-46f6-bd64-181922c462bc"
-  language-code="es"
-></df-messenger>
+  <df-messenger
+    intent="WELCOME"
+    chat-title="BarberiaBot"
+    agent-id="9813ba07-69c3-46f6-bd64-181922c462bc"
+    language-code="es"
+  ></df-messenger>
 </body>
 </html>
-
